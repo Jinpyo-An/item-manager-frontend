@@ -1,26 +1,38 @@
 <template>
 	<div class="auth-tabs">
 		<span
-			:class="{ active: selectedTab === 'signIn' }"
-			@click="selectTab('signIn')"
+			:class="{ active: currentTab === 'SignIn' }"
+			@click="navigateTo('SignIn')"
 			>Sign in</span
 		>
 		<span
-			:class="{ active: selectedTab === 'signUp' }"
-			@click="selectTab('signUp')"
+			:class="{ active: currentTab === 'SignUp' }"
+			@click="navigateTo('SignUp')"
 			>Sign up</span
 		>
 	</div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
+import { ref, watch } from 'vue';
 
-const selectedTab = ref('signIn');
+const router = useRouter();
+const route = useRoute();
+const currentTab = ref(route.name); // 초기 값 설정
 
-function selectTab(tab) {
-	selectedTab.value = tab;
+function navigateTo(tab) {
+	currentTab.value = tab;
+	if (tab === 'SignIn') {
+		router.push({ name: 'SignIn' });
+	} else if (tab === 'SignUp') {
+		router.push({ name: 'SignUp' });
+	}
 }
+
+watch(route, newRoute => {
+	currentTab.value = newRoute.name; // 라우트 변경 시 탭 갱신
+});
 </script>
 
 <style scoped>
@@ -35,6 +47,13 @@ function selectTab(tab) {
 	padding: 10px 20px;
 	font-size: 16px;
 	color: #7d7d7d;
+	transition:
+		color 0.3s,
+		border-bottom 0.3s;
+}
+
+.auth-tabs span:hover {
+	color: #4a90e2;
 }
 
 .auth-tabs .active {

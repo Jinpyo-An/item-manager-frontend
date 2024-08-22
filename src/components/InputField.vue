@@ -1,7 +1,9 @@
 <template>
-	<div class="input-field">
-		<i :class="icon"></i>
-		<input :type="type" :placeholder="placeholder" />
+	<div class="input-wrapper">
+		<label v-if="label" class="input-label">{{ label }}</label>
+		<div class="input-field">
+			<input :type="type" :placeholder="placeholder" />
+		</div>
 	</div>
 </template>
 
@@ -9,18 +11,27 @@
 defineProps({
 	type: String,
 	placeholder: String,
-	icon: String,
+	label: String, // 추가된 레이블 속성
 });
 </script>
 
 <style scoped>
+.input-wrapper {
+	margin: 15px 0;
+}
+
+.input-label {
+	display: block;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
 .input-field {
 	display: flex;
 	align-items: center;
 	border: 1px solid #ccc;
 	border-radius: 8px;
 	padding: 10px;
-	margin: 10px 0;
 }
 
 .input-field i {
