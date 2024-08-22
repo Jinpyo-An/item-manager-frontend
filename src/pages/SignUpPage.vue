@@ -1,21 +1,26 @@
 <template>
-	<div class="login-page">
+	<div class="signup-page">
 		<LogoHeader />
 		<AuthTabs />
 		<InputField
+			type="text"
+			placeholder="Enter your name"
+			icon="fas fa-user"
+			label="Name"
+		/>
+		<InputField
 			type="email"
-			placeholder="이메일을 입력해주세요."
+			placeholder="Enter your email"
 			icon="fas fa-envelope"
 			label="Email"
 		/>
 		<InputField
 			type="password"
-			placeholder="비밀번호를 입력해주세요."
+			placeholder="Enter your password"
 			icon="fas fa-lock"
 			label="Password"
 		/>
-		<RememberMeCheckbox />
-		<SubmitButton />
+		<SubmitButton buttonText="회원가입 하기" />
 	</div>
 </template>
 
@@ -23,12 +28,11 @@
 import LogoHeader from '@/components/LogoHeader.vue';
 import AuthTabs from '@/components/AuthTabs.vue';
 import InputField from '@/components/InputField.vue';
-import RememberMeCheckbox from '@/components/RememberMeCheckbox.vue';
 import SubmitButton from '@/components/SubmitButton.vue';
 </script>
 
 <style scoped>
-.login-page {
+.signup-page {
 	padding: 20px;
 	max-width: 400px;
 	margin: auto;

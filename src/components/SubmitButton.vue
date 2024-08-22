@@ -1,8 +1,17 @@
 <template>
-	<button class="submit-button">Continue</button>
+	<button class="submit-button">
+		{{ buttonText }}
+	</button>
 </template>
 
-<script setup></script>
+<script setup>
+defineProps({
+	buttonText: {
+		type: String,
+		default: 'Continue',
+	},
+});
+</script>
 
 <style scoped>
 .submit-button {
