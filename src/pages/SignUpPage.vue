@@ -4,19 +4,19 @@
 		<AuthTabs />
 		<InputField
 			type="text"
-			placeholder="Enter your name"
+			placeholder="이름을 입력해주세요."
 			icon="fas fa-user"
 			label="Name"
 		/>
 		<InputField
 			type="email"
-			placeholder="Enter your email"
+			placeholder="이메일을 입력해주세요."
 			icon="fas fa-envelope"
 			label="Email"
 		/>
 		<InputField
 			type="password"
-			placeholder="Enter your password"
+			placeholder="비밀번호를 입력해주세요."
 			icon="fas fa-lock"
 			label="Password"
 		/>
