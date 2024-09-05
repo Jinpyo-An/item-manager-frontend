@@ -2,7 +2,12 @@
 	<div class="input-wrapper">
 		<label v-if="label" class="input-label">{{ label }}</label>
 		<div class="input-field">
-			<input :type="type" :placeholder="placeholder" />
+			<input
+				:type="type"
+				:placeholder="placeholder"
+				:value="modelValue"
+				@input="$emit('update:modelValue', $event.target.value)"
+			/>
 		</div>
 	</div>
 </template>
@@ -12,6 +17,7 @@ defineProps({
 	type: String,
 	placeholder: String,
 	label: String, // 추가된 레이블 속성
+	modelValue: String,
 });
 </script>
 
