@@ -1,6 +1,6 @@
 <template>
 	<div class="logo-header">
-		<img src="@/assets/logo.png" alt="Logo" class="logo" />
+		<img src="../../assets/logo.png" alt="Logo" class="logo" />
 		<h1>Item Manager</h1>
 		<p>전자 제품 관리는 Item Manager와 함께!</p>
 	</div>

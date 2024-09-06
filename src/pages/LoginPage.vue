@@ -23,16 +23,20 @@
 <script setup>
 import { ref } from 'vue';
 import { login } from '@/api/auth'; // 분리된 login 함수 불러오기
-import LogoHeader from '@/components/LogoHeader.vue';
-import AuthTabs from '@/components/AuthTabs.vue';
-import InputField from '@/components/InputField.vue';
-import RememberMeCheckbox from '@/components/RememberMeCheckbox.vue';
-import SubmitButton from '@/components/SubmitButton.vue';
+import LogoHeader from '@/components/auth/LogoHeader.vue';
+import AuthTabs from '@/components/auth/AuthTabs.vue';
+import InputField from '@/components/auth/InputField.vue';
+import RememberMeCheckbox from '@/components/auth/RememberMeCheckBox.vue';
+import SubmitButton from '@/components/auth/SubmitButton.vue';
+import { useAuthStore } from '@/stores/authStore';
+import router from '@/router/index.js'; // Pinia 스토어 불러오기
 
 const email = ref('');
 const password = ref('');
 const loading = ref(false);
 const errorMessage = ref('');
+
+const authStore = useAuthStore();
 
 async function handleLogin() {
 	errorMessage.value = ''; // 기존 에러 메시지 초기화
@@ -42,14 +46,12 @@ async function handleLogin() {
 		// login 함수를 호출하여 로그인 요청
 		const data = await login(email.value, password.value);
 
-		// 로그인 성공 시 accessToken과 refreshToken을 localStorage에 저장
+		// 로그인 성공 시 토큰을 Pinia 스토어에 저장
 		if (data.accessToken && data.refreshToken) {
-			localStorage.setItem('accessToken', data.accessToken);
-			localStorage.setItem('refreshToken', data.refreshToken);
+			authStore.setTokens(data.accessToken, data.refreshToken);
 			alert('로그인에 성공하였습니다.');
 
-			// 필요 시, 로그인 후 리다이렉트
-			// router.push('/dashboard'); (예시)
+			await router.push('/');
 		}
 	} catch (error) {
 		// 에러 처리
