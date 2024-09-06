@@ -25,10 +25,10 @@
 </template>
 
 <script setup>
-import LogoHeader from '@/components/LogoHeader.vue';
-import AuthTabs from '@/components/AuthTabs.vue';
-import InputField from '@/components/InputField.vue';
-import SubmitButton from '@/components/SubmitButton.vue';
+import LogoHeader from '@/components/auth/LogoHeader.vue';
+import AuthTabs from '@/components/auth/AuthTabs.vue';
+import InputField from '@/components/auth/InputField.vue';
+import SubmitButton from '@/components/auth/SubmitButton.vue';
 </script>
 
 <style scoped>
