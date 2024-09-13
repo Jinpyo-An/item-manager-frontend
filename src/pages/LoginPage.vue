@@ -13,6 +13,7 @@
 			type="password"
 			placeholder="비밀번호를 입력해주세요."
 			label="Password"
+			@keyup.enter="handleLogin"
 		/>
 		<RememberMeCheckbox />
 		<SubmitButton :loading="loading" @click="handleLogin" />
