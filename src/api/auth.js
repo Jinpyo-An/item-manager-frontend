@@ -19,10 +19,9 @@ export async function login(email, password) {
 			},
 		);
 
-		// 로그인 성공 시 반환된 accessToken, refreshToken 반환
+		// 로그인 성공 시, 서버로부터 반환된 accessToken, refreshToken 반환
 		return response.data;
 	} catch (error) {
-		// 에러 처리
 		if (error.response && error.response.status === 400) {
 			throw new Error('로그인에 실패하였습니다. 존재하지 않은 회원입니다.');
 		} else {

@@ -13,7 +13,7 @@ const authStore = useAuthStore();
 const router = useRouter();
 
 function handleLogout() {
-	// Pinia 스토어에서 로그아웃 처리
+	// 로그아웃 처리
 	authStore.clearTokens();
 
 	alert('로그아웃 되었습니다.');
@@ -29,6 +29,10 @@ function handleLogout() {
 	align-items: center;
 	margin-top: 0;
 	padding: 0 20px 20px;
+}
+
+.header h1 {
+	font-family: Arial;
 }
 
 .header .logout {

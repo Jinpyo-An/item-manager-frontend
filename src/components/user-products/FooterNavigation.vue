@@ -19,11 +19,13 @@ function goTo(page) {
 	justify-content: space-around;
 	padding: 15px;
 	border-top: 1px solid #ddd;
+	margin-bottom: 10px;
 }
 
 button {
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
+	font-size: 15px;
 }
-</style
+</style>
