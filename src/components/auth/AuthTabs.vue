@@ -40,12 +40,13 @@ watch(route, newRoute => {
 	display: flex;
 	justify-content: center;
 	margin: 20px 0;
+	box-shadow: 0 5px 5px -5px #333;
 }
 
 .auth-tabs span {
 	cursor: pointer;
-	padding: 10px 20px;
-	font-size: 16px;
+	padding: 10px 72px;
+	font-size: 17px;
 	color: #7d7d7d;
 	transition:
 		color 0.3s,

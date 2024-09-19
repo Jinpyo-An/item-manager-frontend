@@ -16,6 +16,8 @@
 	align-items: center;
 	justify-content: space-between;
 	margin-top: 20px;
+	margin-right: 30px;
+	margin-left: 30px;
 }
 
 .checkbox-label {

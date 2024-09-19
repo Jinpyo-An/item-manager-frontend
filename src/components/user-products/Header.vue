@@ -1,7 +1,16 @@
 <template>
 	<div class="header">
-		<h1>나의 전자 제품</h1>
-		<button class="logout" @click="handleLogout">로그아웃</button>
+		<div class="header-left">
+			<!-- 로고와 타이틀 -->
+			<img src="@/assets/logo.jpg" alt="logo" class="logo" />
+			<span class="title">Item Manager</span>
+		</div>
+
+		<!-- 로그아웃 버튼 -->
+		<button class="logout" @click="handleLogout">
+			<font-awesome-icon :icon="['fas', 'right-from-bracket']" class="icon" />
+			로그아웃
+		</button>
 	</div>
 </template>
 
@@ -13,12 +22,19 @@ const authStore = useAuthStore();
 const router = useRouter();
 
 function handleLogout() {
-	// 로그아웃 처리
-	authStore.clearTokens();
+	// 사용자에게 로그아웃 여부를 묻는 확인 대화 상자
+	const confirmLogout = confirm('로그아웃 하시겠습니까?');
 
-	alert('로그아웃 되었습니다.');
-	// 로그인 페이지로 리다이렉트
-	router.push('/signin');
+	if (confirmLogout) {
+		// 사용자가 확인을 클릭하면 로그아웃 처리
+		authStore.clearTokens();
+		alert('로그아웃 되었습니다.');
+		// 로그인 페이지로 리다이렉트
+		router.push('/signin');
+	} else {
+		// 사용자가 취소를 클릭하면 로그아웃 취소
+		console.log('로그아웃 취소');
+	}
 }
 </script>
 
@@ -27,24 +43,45 @@ function handleLogout() {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-top: 0;
-	padding: 0 20px 20px;
+	padding: 5px 5px 5px;
+	margin: 10px;
 }
 
-.header h1 {
-	font-family: Arial;
+.header-left {
+	display: flex;
+	align-items: center;
 }
 
-.header .logout {
-	border: 1px solid #4a90e2;
-	color: #4a90e2;
+.logo {
+	width: 40px;
+	height: 40px;
 }
 
-button {
+.title {
+	font-size: 1.5rem;
+	font-weight: 500;
+	margin-left: 10px;
+	font-family: Lexend, serif;
+}
+
+.logout {
 	background-color: transparent;
-	border: 1px solid #ccc;
-	border-radius: 8px;
-	padding: 8px 12px;
+	border: 1px solid #5269cdff;
+	padding: 10px 15px;
+	margin-top: 10px;
+	font-size: 1rem;
 	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	line-height: 20px;
+	font-weight: 400;
+	color: #5269cdff; /* primary-500 */
+	opacity: 1;
+	border-radius: 16px;
+}
+
+.logout .icon {
+	margin-right: 5px; /* 아이콘과 텍스트 사이 간격 */
 }
 </style>
