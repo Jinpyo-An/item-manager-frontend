@@ -16,19 +16,21 @@
 .logo {
 	top: 0;
 	left: 80px;
-	width: 74px;
-	height: 72px;
+	width: 60px;
+	height: 58px;
 	border-radius: 0;
+	margin-top: 10px;
 }
 h1 {
 	font-family: Lexend, serif; /* Heading */
-	font-size: 32px;
+	font-size: 30px;
 	line-height: 48px;
 	font-weight: 700;
 	color: #171a1fff;
+	margin: 10px;
 }
 p {
-	font-size: 16px;
+	font-size: 14px;
 	line-height: 22px;
 	font-weight: 400;
 	color: #9095a1ff;

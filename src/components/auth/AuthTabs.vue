@@ -46,7 +46,7 @@ watch(route, newRoute => {
 .auth-tabs span {
 	cursor: pointer;
 	padding: 10px 72px;
-	font-size: 17px;
+	font-size: 10px;
 	color: #7d7d7d;
 	transition:
 		color 0.3s,

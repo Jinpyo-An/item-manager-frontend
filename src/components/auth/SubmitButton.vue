@@ -17,12 +17,12 @@ defineProps({
 
 <style scoped>
 .submit-container {
-	margin-right: 20px;
-	margin-left: 20px;
+	margin-right: 30px;
+	margin-left: 30px;
 }
 .submit-button {
 	width: 100%;
-	padding: 15px;
+	padding: 14px;
 	font-size: 16px;
 	cursor: pointer;
 	margin-top: 20px;

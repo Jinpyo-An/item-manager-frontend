@@ -41,9 +41,7 @@ onMounted(() => {
 	justify-content: space-between; /* 왼쪽 섹션과 버튼을 양 끝으로 배치 */
 	align-items: center; /* 모든 요소를 세로로 중앙에 정렬 */
 	padding: 5px 5px 5px;
-	margin: 10px 0;
-	margin-left: 10px;
-	margin-right: 10px;
+	margin: 10px;
 }
 
 .left-section {
@@ -54,7 +52,7 @@ onMounted(() => {
 .date-info {
 	display: flex;
 	align-items: center;
-	font-size: 1rem;
+	font-size: 0.8rem;
 	font-family: Manrope, serif;
 	color: #666;
 	margin-bottom: 10px; /* 날짜와 타이틀 사이 간격 */
@@ -66,7 +64,7 @@ onMounted(() => {
 }
 
 h1 {
-	font-size: 2rem;
+	font-size: 1.7rem;
 	font-weight: bold;
 	margin: 0;
 }
@@ -74,9 +72,9 @@ h1 {
 .register-btn {
 	background-color: transparent;
 	border: 1px solid #5269cdff;
-	padding: 10px 15px;
-	margin-top: 20px;
-	font-size: 1rem;
+	padding: 7px 10px;
+	margin-top: 35px;
+	font-size: 0.7rem;
 	cursor: pointer;
 	display: flex;
 	align-items: center;

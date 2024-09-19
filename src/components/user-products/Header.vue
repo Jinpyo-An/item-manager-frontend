@@ -58,18 +58,19 @@ function handleLogout() {
 }
 
 .title {
-	font-size: 1.5rem;
+	font-size: 1.2rem;
 	font-weight: 500;
 	margin-left: 10px;
+	margin-right: 10px;
 	font-family: Lexend, serif;
 }
 
 .logout {
 	background-color: transparent;
 	border: 1px solid #5269cdff;
-	padding: 10px 15px;
+	padding: 7px 10px;
 	margin-top: 10px;
-	font-size: 1rem;
+	font-size: 0.7rem;
 	cursor: pointer;
 	display: flex;
 	align-items: center;

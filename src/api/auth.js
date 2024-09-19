@@ -1,4 +1,4 @@
-import axios from 'axios';
+import apiClient from './apiClient'; // apiClient를 불러옴
 
 // 로그인 요청 함수
 export async function login(email, password) {
@@ -8,18 +8,17 @@ export async function login(email, password) {
 		console.log('Base64 Encoded Credentials:', credentials); // 확인용 출력
 
 		// API 요청
-		const response = await axios.post(
-			'http://localhost:3000/api/auth/signin',
+		const response = await apiClient.post(
+			'api/auth/signin',
 			{},
 			{
 				headers: {
 					Authorization: `Basic ${credentials}`,
-					'Content-Type': 'application/json',
 				},
 			},
 		);
 
-		// 로그인 성공 시, 서버로부터 반환된 accessToken, refreshToken 반환
+		// 로그인 성공 시 반환된 accessToken, refreshToken 반환
 		return response.data;
 	} catch (error) {
 		if (error.response && error.response.status === 400) {

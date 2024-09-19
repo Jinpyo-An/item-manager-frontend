@@ -18,15 +18,15 @@
 </template>
 
 <script setup>
+import apiClient from '@/api/apiClient'; // apiClient에서 baseURL 불러오기
+
 defineProps({
 	device: Object, // 상위 컴포넌트에서 전달받은 전자제품 데이터
 });
 
-const serverUrl = 'http://localhost:3000'; // 서버 주소 설정
-
-// 이미지 경로에 서버 주소 추가
+// 이미지 경로에 서버 주소 추가 (apiClient의 baseURL 사용)
 function getImageUrl(imagePath) {
-	return `${serverUrl}/${imagePath}`;
+	return `${apiClient.defaults.baseURL}/${imagePath}`;
 }
 
 // "년"과 "개월" 표시를 동적으로 처리
@@ -60,7 +60,7 @@ function getBackgroundColor(device) {
 
 .device-image {
 	width: 100%;
-	height: 100px; /* 높이를 일정하게 고정 */
+	height: 90px; /* 높이를 일정하게 고정 */
 	object-fit: cover; /* 이미지가 비율을 유지하며 카드 크기에 맞게 조정 */
 	border-radius: 8px;
 	margin-bottom: 0;
@@ -69,10 +69,12 @@ function getBackgroundColor(device) {
 h3 {
 	margin-top: 4px;
 	margin-bottom: 3px;
+	font-size: 15px;
 }
 
 p {
 	margin: 4px 0;
+	font-size: 14px;
 }
 
 #availablePeriod {

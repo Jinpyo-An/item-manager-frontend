@@ -16,14 +16,14 @@
 defineProps({
 	type: String,
 	placeholder: String,
-	label: String, // 추가된 레이블 속성
+	label: String,
 	modelValue: String,
 });
 </script>
 
 <style scoped>
 .input-wrapper {
-	margin-top: 15px;
+	margin-top: 10px;
 	margin-right: 30px;
 	margin-left: 30px;
 }
