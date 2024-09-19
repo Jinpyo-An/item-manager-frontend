@@ -1,7 +1,7 @@
 <template>
 	<div class="main-page">
 		<Header />
-		<button class="register-btn">나의 전자제품 등록하기</button>
+		<MainTitleSelection />
 
 		<!-- 전자제품 목록 표시 -->
 		<div class="scroll-container">
@@ -23,6 +23,7 @@ import { useRouter } from 'vue-router'; // 라우터 사용
 import Header from '@/components/user-products/Header.vue';
 import ProductCard from '@/components/user-products/ProductCard.vue'; // 분리된 전자제품 카드 컴포넌트
 import FooterNavigation from '@/components/user-products/FooterNavigation.vue';
+import MainTitleSelection from '@/components/user-products/MainTitleSelection.vue';
 import { fetchUserProducts } from '@/api/userProducts'; // API 요청 코드 추가
 
 const devices = ref([]); // API에서 받아온 사용자 전자제품 목록
@@ -66,15 +67,8 @@ onMounted(async () => {
 	flex-direction: column;
 	overflow: hidden;
 }
-
-.register-btn {
-	background-color: transparent;
-	border: 1px solid #4a90e2;
-	color: #4a90e2;
-	border-radius: 8px;
-	padding: 8px 16px;
-	cursor: pointer;
-	margin: 0 0 15px;
+span {
+	text-align: right;
 }
 
 .scroll-container {
@@ -83,6 +77,8 @@ onMounted(async () => {
 	display: grid;
 	grid-template-columns: 1fr 1fr; /* 2열 그리드로 전자제품 카드 표시 */
 	gap: 10px;
+	margin-left: 15px;
+	margin-right: 15px;
 }
 
 header {

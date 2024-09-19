@@ -33,8 +33,10 @@ import SubmitButton from '@/components/auth/SubmitButton.vue';
 
 <style scoped>
 .signup-page {
-	padding: 20px;
+	margin-left: 0;
+	margin-right: 0;
+	padding-left: 0;
+	padding-right: 0;
 	max-width: 400px;
-	margin: auto;
 }
 </style>

@@ -23,7 +23,9 @@ defineProps({
 
 <style scoped>
 .input-wrapper {
-	margin: 15px 0;
+	margin-top: 15px;
+	margin-right: 30px;
+	margin-left: 30px;
 }
 
 .input-label {

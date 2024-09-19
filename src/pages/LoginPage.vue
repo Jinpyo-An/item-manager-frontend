@@ -65,9 +65,11 @@ async function handleLogin() {
 
 <style scoped>
 .login-page {
-	padding: 20px;
+	margin-left: 0;
+	margin-right: 0;
+	padding-left: 0;
+	padding-right: 0;
 	max-width: 400px;
-	margin: auto;
 }
 
 .error-message {

@@ -1,7 +1,9 @@
 <template>
-	<button class="submit-button">
-		{{ buttonText }}
-	</button>
+	<div class="submit-container">
+		<button class="submit-button">
+			{{ buttonText }}
+		</button>
+	</div>
 </template>
 
 <script setup>
@@ -14,6 +16,10 @@ defineProps({
 </script>
 
 <style scoped>
+.submit-container {
+	margin-right: 20px;
+	margin-left: 20px;
+}
 .submit-button {
 	width: 100%;
 	padding: 15px;
