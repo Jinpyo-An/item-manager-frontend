@@ -9,7 +9,7 @@
 		<!-- 내 제품 버튼 -->
 		<button @click="goTo('my-products')" class="nav-item">
 			<font-awesome-icon :icon="['fas', 'user']" class="nav-icon" />
-			<span>내 제품</span>
+			<span>나의 전자제품</span>
 		</button>
 
 		<!-- 사용법 버튼 -->
@@ -32,7 +32,6 @@ function goTo(page) {
 	display: flex;
 	justify-content: space-around;
 	padding: 8px;
-	margin-bottom: 5px;
 	border-radius: 16px 16px 0 0;
 	box-shadow: 0 -5px 5px -5px #333;
 }
@@ -44,15 +43,15 @@ function goTo(page) {
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
-	font-size: 11px;
+	font-size: 10px;
 	line-height: 16px;
 	font-weight: 400;
 	opacity: 1;
 }
 
 .nav-icon {
-	width: 24px;
-	height: 24px;
+	width: 20px;
+	height: 20px;
 	fill: currentColor;
 }
 </style>
