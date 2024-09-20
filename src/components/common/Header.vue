@@ -2,7 +2,7 @@
 	<div class="header">
 		<div class="header-left">
 			<!-- 로고와 타이틀 -->
-			<img src="@/assets/logo.jpg" alt="logo" class="logo" />
+			<img src="../../assets/logo.jpg" alt="logo" class="logo" />
 			<span class="title">Item Manager</span>
 		</div>
 
@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { useAuthStore } from '@/stores/authStore'; // Pinia 스토어 불러오기
+import { useAuthStore } from '@/stores/authStore.js'; // Pinia 스토어 불러오기
 import { useRouter } from 'vue-router'; // 라우터 사용
 
 const authStore = useAuthStore();

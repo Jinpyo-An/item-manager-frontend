@@ -12,6 +12,7 @@ import {
 	faHouse,
 	faUser,
 	faShareNodes,
+	faMagnifyingGlass,
 } from '@fortawesome/free-solid-svg-icons'; // 필요한 아이콘 import
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -22,6 +23,7 @@ library.add(
 	faHouse,
 	faUser,
 	faShareNodes,
+	faMagnifyingGlass,
 );
 
 const app = createApp(App);
