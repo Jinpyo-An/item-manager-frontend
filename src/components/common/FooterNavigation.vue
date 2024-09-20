@@ -13,17 +13,19 @@
 		</button>
 
 		<!-- 사용법 버튼 -->
-		<button @click="goTo('more-devices')" class="nav-item">
-			<font-awesome-icon :icon="['fasr', 'share-nodes']" class="nav-icon" />
+		<button @click="goTo('products')" class="nav-item">
+			<font-awesome-icon :icon="['fas', 'share-nodes']" class="nav-icon" />
 			<span>사용법</span>
 		</button>
 	</nav>
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
+const router = useRouter();
+
 function goTo(page) {
-	// 라우터 이동 로직
-	console.log(`${page} 페이지로 이동`);
+	router.push(`/${page}`); // 실제로 페이지 이동
 }
 </script>
 
