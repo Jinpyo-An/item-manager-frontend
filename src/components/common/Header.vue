@@ -1,12 +1,10 @@
 <template>
 	<div class="header">
 		<div class="header-left">
-			<!-- 로고와 타이틀 -->
 			<img src="../../assets/logo.jpg" alt="logo" class="logo" />
 			<span class="title">Item Manager</span>
 		</div>
 
-		<!-- 로그아웃 버튼 -->
 		<button class="logout" @click="handleLogout">
 			<font-awesome-icon :icon="['fas', 'right-from-bracket']" class="icon" />
 			로그아웃
@@ -22,7 +20,7 @@ const authStore = useAuthStore();
 const router = useRouter();
 
 function handleLogout() {
-	// 사용자에게 로그아웃 여부를 묻는 확인 대화 상자
+	// 사용자에게 로그아웃 여부 확인
 	const confirmLogout = confirm('로그아웃 하시겠습니까?');
 
 	if (confirmLogout) {
@@ -77,12 +75,12 @@ function handleLogout() {
 	justify-content: center;
 	line-height: 20px;
 	font-weight: 400;
-	color: #5269cdff; /* primary-500 */
+	color: #5269cdff;
 	opacity: 1;
 	border-radius: 16px;
 }
 
 .logout .icon {
-	margin-right: 5px; /* 아이콘과 텍스트 사이 간격 */
+	margin-right: 5px;
 }
 </style>

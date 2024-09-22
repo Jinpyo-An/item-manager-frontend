@@ -25,7 +25,7 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 
 function goTo(page) {
-	router.push(`/${page}`); // 실제로 페이지 이동
+	router.push(`/${page}`);
 }
 </script>
 
@@ -40,7 +40,7 @@ function goTo(page) {
 
 .nav-item {
 	display: flex;
-	flex-direction: column; /* 아이콘과 텍스트를 세로로 배치 */
+	flex-direction: column;
 	align-items: center;
 	background-color: transparent;
 	border: none;

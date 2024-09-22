@@ -18,20 +18,20 @@
 </template>
 
 <script setup>
-import apiClient from '@/api/apiClient'; // apiClient에서 baseURL 불러오기
+import apiClient from '@/api/apiClient';
 
 defineProps({
-	device: Object, // 상위 컴포넌트에서 전달받은 전자제품 데이터
+	device: Object,
 });
 
-// 이미지 경로에 서버 주소 추가 (apiClient의 baseURL 사용)
+// 전달 받은 이미지 경로에 서버 주소 연결 함수
 function getImageUrl(imagePath) {
 	return `${apiClient.defaults.baseURL}/${imagePath}`;
 }
 
-// "년"과 "개월" 표시를 동적으로 처리
+// year, month 동적 처리
 function formatDuration(duration) {
-	// '1년 8개월'에서 연, 월 추출
+	// year, month 동적 추출
 	const [years, months] = duration.match(/(\d+)년\s*(\d+)개월/).slice(1, 3);
 
 	let formatted = '';
@@ -39,14 +39,14 @@ function formatDuration(duration) {
 	if (years > 0) formatted += `${years}년 `;
 	if (months > 0) formatted += `${months}개월`;
 
-	return formatted.trim(); // 불필요한 공백 제거
+	return formatted.trim();
 }
 
-// 배경 색상을 동적으로 설정하는 함수
+// 사용자 전자제품의 배경 색상을 동적으로 설정
 function getBackgroundColor(device) {
 	const colors = ['#7A8BD8FF', '#00E0A5FF', '#199878FF', '#125D95FF'];
 
-	// 권장 사용 기간에 따른 배경 색상
+	// 권장 사용 기간에 따른 배경 색상 동적 설정
 	return colors[device.recommendUsageDuration % colors.length];
 }
 </script>
@@ -60,8 +60,8 @@ function getBackgroundColor(device) {
 
 .device-image {
 	width: 100%;
-	height: 90px; /* 높이를 일정하게 고정 */
-	object-fit: cover; /* 이미지가 비율을 유지하며 카드 크기에 맞게 조정 */
+	height: 90px;
+	object-fit: cover;
 	border-radius: 8px;
 	margin-bottom: 0;
 }
@@ -78,6 +78,6 @@ p {
 }
 
 #availablePeriod {
-	margin: 4px 0; /* 각 텍스트 요소 간 간격 줄이기 */
+	margin: 4px 0;
 }
 </style>

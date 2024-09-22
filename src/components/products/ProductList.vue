@@ -6,7 +6,6 @@
 			class="product-item"
 			@click="$emit('openModal', device)"
 		>
-			<!-- SVG 아이콘 사용 -->
 			<img
 				:src="getIconForCategory(device.category)"
 				alt="device icon"
@@ -38,7 +37,8 @@ function getIconForCategory(category) {
 		휴대폰: smartPhoneIcon,
 		다리미: ironIcon,
 	};
-	// 아이콘이 없을 경우 기본 아이콘 사용
+
+	// 제품 아이콘이 없을 경우 기본 아이콘 사용
 	return iconMap[category] || defaultDeviceIcon;
 }
 </script>

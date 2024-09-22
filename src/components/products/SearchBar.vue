@@ -18,13 +18,13 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 
-// 부모 컴포넌트로 검색어를 전달하기 위한 emit 사용
+// 부모 컴포넌트로 검색어 전달
 const emit = defineEmits(['search']);
 const searchQuery = ref(''); // 검색어 입력 값
 
-// 검색어가 변경될 때마다 부모 컴포넌트로 emit
+// 검색어가 변경될 때마다 부모 컴포넌트로 검색어 전달
 function emitSearch() {
 	emit('search', searchQuery.value);
 }
@@ -41,7 +41,7 @@ function emitSearch() {
 	font-weight: bold;
 	font-size: 1.5rem;
 	margin-bottom: 10px;
-	font-family: Lexend, serif; /* Heading */
+	font-family: Lexend, serif;
 }
 
 .search-input-wrapper {

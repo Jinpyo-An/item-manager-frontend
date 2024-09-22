@@ -44,10 +44,10 @@ async function handleLogin() {
 	loading.value = true;
 
 	try {
-		// login 함수를 호출하여 로그인 요청
+		// 로그인 요청
 		const data = await login(email.value, password.value);
 
-		// 로그인 성공 시 토큰을 Pinia 스토어에 저장
+		// 로그인 성공 시, 토큰을 Pinia 스토어에 저장
 		if (data.accessToken && data.refreshToken) {
 			authStore.setTokens(data.accessToken, data.refreshToken);
 			alert('로그인에 성공하였습니다.');
@@ -55,7 +55,6 @@ async function handleLogin() {
 			await router.push('/');
 		}
 	} catch (error) {
-		// 에러 처리
 		errorMessage.value = error.message;
 	} finally {
 		loading.value = false;

@@ -1,7 +1,7 @@
-import apiClient from './apiClient'; // apiClient 사용
+import apiClient from './apiClient';
 
-// 전자제품 정보 가져오기
-export async function fetchProducts(accessToken) {
+// 전자제품 정보(올바른 사용법) 가져오기
+export async function getProducts(accessToken) {
 	try {
 		const response = await apiClient.get('api/products', {
 			headers: {
@@ -9,6 +9,7 @@ export async function fetchProducts(accessToken) {
 				'Content-Type': 'application/json',
 			},
 		});
+
 		return response.data;
 	} catch (error) {
 		console.error('Error fetching products:', error);

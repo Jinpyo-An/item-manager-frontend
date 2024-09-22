@@ -3,8 +3,6 @@
 	<div class="modal" @click.self="$emit('close')">
 		<div class="modal-content">
 			<div class="modal-header">
-				<!-- PNG 아이콘 사용 -->
-
 				<div class="product-info">
 					<h3>{{ product.category }}</h3>
 					<p>
@@ -40,7 +38,7 @@ const props = defineProps({
 	product: Object,
 });
 
-// PNG 아이콘 경로 반환 함수
+// 아이콘 경로 반환 함수
 function getIconForCategory(category) {
 	const iconMap = {
 		냉장고: refrigeratorIcon,
@@ -49,6 +47,7 @@ function getIconForCategory(category) {
 		휴대폰: smartPhoneIcon,
 		다리미: ironIcon,
 	};
+
 	// 아이콘이 없을 경우 기본 아이콘 사용
 	return iconMap[category] || defaultDeviceIcon;
 }
@@ -93,9 +92,6 @@ function getIconForCategory(category) {
 .product-info {
 	display: flex;
 	flex-direction: column;
-}
-
-h3 {
 }
 
 p {

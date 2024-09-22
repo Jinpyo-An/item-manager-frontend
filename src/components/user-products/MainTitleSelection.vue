@@ -5,7 +5,7 @@
 				<i class="sun-icon"
 					><font-awesome-icon :icon="['fas', 'calendar-days']"
 				/></i>
-				<span class="date">{{ formattedDate }}</span>
+				<span class="date">{{ currentDate }}</span>
 			</div>
 			<h1>나의 전자 제품</h1>
 		</div>
@@ -20,33 +20,32 @@
 import { ref, onMounted } from 'vue';
 
 // 현재 날짜를 저장할 변수
-const formattedDate = ref('');
+const currentDate = ref('');
 
-// 현재 날짜를 포맷팅하는 함수
+// 현재 날짜 포맷팅 함수
 function formatDate(date) {
 	const options = { weekday: 'short', day: 'numeric', month: 'short' };
 	return date.toLocaleDateString('en-US', options).toUpperCase(); // 예시: "FRI, SEP 13"
 }
 
-// 페이지가 로드될 때 실행되는 함수
 onMounted(() => {
 	const now = new Date();
-	formattedDate.value = formatDate(now);
+	currentDate.value = formatDate(now);
 });
 </script>
 
 <style scoped>
 .main-title-section {
 	display: flex;
-	justify-content: space-between; /* 왼쪽 섹션과 버튼을 양 끝으로 배치 */
-	align-items: center; /* 모든 요소를 세로로 중앙에 정렬 */
+	justify-content: space-between;
+	align-items: center;
 	padding: 5px 5px 5px;
 	margin: 10px;
 }
 
 .left-section {
 	display: flex;
-	flex-direction: column; /* 날짜와 타이틀을 세로로 배치 */
+	flex-direction: column;
 }
 
 .date-info {
@@ -55,7 +54,7 @@ onMounted(() => {
 	font-size: 0.8rem;
 	font-family: Manrope, serif;
 	color: #666;
-	margin-bottom: 10px; /* 날짜와 타이틀 사이 간격 */
+	margin-bottom: 10px;
 }
 
 .sun-icon {
@@ -81,12 +80,12 @@ h1 {
 	justify-content: center;
 	line-height: 20px;
 	font-weight: 400;
-	color: #5269cdff; /* primary-500 */
+	color: #5269cdff;
 	opacity: 1;
 	border-radius: 16px;
 }
 
 .register-btn .icon {
-	margin-right: 6px; /* 아이콘과 텍스트 간의 간격 */
+	margin-right: 6px;
 }
 </style>
