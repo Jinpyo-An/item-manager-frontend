@@ -1,14 +1,11 @@
 <template>
 	<div class="usage-page">
 		<Header />
-		<!-- 기존 Header 재사용 -->
-
 		<div class="content">
 			<SearchBar @search="handleSearch" />
 			<ProductList :products="filteredProducts" @openModal="openModal" />
 		</div>
 
-		<!-- 모달 창 -->
 		<UsageModal
 			v-if="selectedProduct"
 			:product="selectedProduct"
@@ -16,30 +13,53 @@
 		/>
 
 		<FooterNavigation />
-		<!-- 기존 Footer 재사용 -->
 	</div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import Header from '@/components/common/Header.vue'; // 기존 Header 컴포넌트
-import FooterNavigation from '@/components/common/FooterNavigation.vue'; // 기존 Footer 컴포넌트
+import Header from '@/components/common/Header.vue';
+import FooterNavigation from '@/components/common/FooterNavigation.vue';
 import SearchBar from '@/components/products/SearchBar.vue';
 import ProductList from '@/components/products/ProductList.vue';
 import UsageModal from '@/components/products/UsageModal.vue';
-import { fetchProducts } from '@/api/products'; // API 요청 함수
+import { getProducts } from '@/api/products';
+import { useAuthStore } from '@/stores/authStore';
+import { useRouter } from 'vue-router';
 
-const searchTerm = ref('');
 const products = ref([]);
 const filteredProducts = ref([]);
 const selectedProduct = ref(null);
 
+const authStore = useAuthStore();
+const router = useRouter();
+
 onMounted(async () => {
-	const accessToken = localStorage.getItem('accessToken'); // 토큰 가져오기
-	const data = await fetchProducts(accessToken);
-	products.value = data;
-	filteredProducts.value = data;
+	await checkAuthentication(); // 인증 상태 확인
+
+	try {
+		const accessToken = authStore.accessToken;
+		const data = await getProducts(accessToken);
+		products.value = data;
+		filteredProducts.value = data;
+	} catch (error) {
+		console.error('Error fetching products:', error.message);
+		alert('전자제품 정보를 가져오는 중 오류가 발생했습니다.');
+	}
+
+	setViewportHeight();
+	window.addEventListener('resize', setViewportHeight);
 });
+
+// 인증 상태 확인 함수
+async function checkAuthentication() {
+	authStore.loadTokens();
+
+	if (!authStore.isAuthenticated) {
+		alert('로그인이 필요합니다.');
+		await router.push('/signin');
+	}
+}
 
 // 검색 핸들러
 function handleSearch(term) {
@@ -48,7 +68,7 @@ function handleSearch(term) {
 	);
 }
 
-// 제품 아이콘 클릭 시 모달 열기
+// 모달 열기
 function openModal(device) {
 	selectedProduct.value = device;
 }
@@ -57,24 +77,46 @@ function openModal(device) {
 function closeModal() {
 	selectedProduct.value = null;
 }
+
+// 뷰포트 높이 설정 함수
+function setViewportHeight() {
+	const vh = window.innerHeight * 0.01;
+	document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
 </script>
 
 <style scoped>
 .usage-page {
+	padding: 0;
+	width: 100%;
+	height: calc(var(--vh, 1vh) * 100);
+	max-width: 390px;
+	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
-	min-height: 100vh; /* 화면 전체를 차지하도록 설정 */
+	overflow: hidden;
 }
 
 .content {
-	flex-grow: 1; /* 중간 영역이 가변적으로 늘어나도록 설정 */
+	flex-grow: 1;
 	padding: 10px;
-	overflow-y: auto; /* 내용이 많으면 스크롤 가능 */
+	overflow-y: auto;
 }
 
 footer-navigation {
-	position: relative;
+	position: fixed;
 	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: white;
+	z-index: 1000;
+	height: 60px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+	max-width: 390px;
 	width: 100%;
+	margin: 0;
 }
 </style>

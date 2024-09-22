@@ -23,7 +23,7 @@
 .checkbox-label {
 	display: flex;
 	align-items: center;
-	gap: 5px; /* 체크박스와 텍스트 사이의 간격 */
+	gap: 5px;
 }
 
 .forgot-password {

@@ -1,16 +1,15 @@
-// userProducts.js
-import apiClient from './apiClient'; // apiClient를 불러옴
+import apiClient from './apiClient';
 
-// 사용자 전자제품 정보를 요청하는 함수
-export async function fetchUserProducts(accessToken) {
+// 사용자 전자제품 정보 요청 API 함수
+export async function getUserProducts(accessToken) {
 	try {
 		const response = await apiClient.get('api/user-products', {
 			headers: {
-				Authorization: `Bearer ${accessToken}`, // 인증 토큰 설정
+				Authorization: `Bearer ${accessToken}`, // 인증 토큰
 			},
 		});
 
-		return response.data.userProductList; // 전자제품 목록 반환
+		return response.data.userProductList; // 사용자 전자제품 정보 목록 반환
 	} catch (error) {
 		console.error('Error fetching user products:', error);
 		throw new Error('전자제품 목록을 가져오는 중 오류가 발생했습니다.');

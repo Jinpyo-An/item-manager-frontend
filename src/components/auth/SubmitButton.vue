@@ -26,8 +26,8 @@ defineProps({
 	font-size: 16px;
 	cursor: pointer;
 	margin-top: 20px;
-	color: #ffffffff; /* white */
-	background: #5269cdff; /* primary-500 */
+	color: #ffffffff;
+	background: #5269cdff;
 	opacity: 1;
 	border: none;
 	border-radius: 12px;

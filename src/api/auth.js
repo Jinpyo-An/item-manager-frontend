@@ -5,9 +5,8 @@ export async function login(email, password) {
 	try {
 		// email과 password를 base64로 인코딩
 		const credentials = btoa(`${email}:${password}`);
-		console.log('Base64 Encoded Credentials:', credentials); // 확인용 출력
 
-		// API 요청
+		// API 로그인 요청
 		const response = await apiClient.post(
 			'api/auth/signin',
 			{},
