@@ -35,7 +35,14 @@ const authStore = useAuthStore();
 const router = useRouter();
 
 onMounted(async () => {
-	await checkAuthentication(); // 인증 상태 확인
+	authStore.loadTokens();
+
+	if (!authStore.isAuthenticated) {
+		alert('로그인이 필요합니다.');
+		await router.push('/signin');
+
+		return;
+	}
 
 	try {
 		const accessToken = authStore.accessToken;
@@ -50,16 +57,6 @@ onMounted(async () => {
 	setViewportHeight();
 	window.addEventListener('resize', setViewportHeight);
 });
-
-// 인증 상태 확인 함수
-async function checkAuthentication() {
-	authStore.loadTokens();
-
-	if (!authStore.isAuthenticated) {
-		alert('로그인이 필요합니다.');
-		await router.push('/signin');
-	}
-}
 
 // 검색 핸들러
 function handleSearch(term) {
@@ -104,7 +101,7 @@ function setViewportHeight() {
 }
 
 footer-navigation {
-	position: fixed;
+	position: absolute;
 	bottom: 0;
 	left: 0;
 	right: 0;

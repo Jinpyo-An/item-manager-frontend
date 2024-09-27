@@ -83,7 +83,7 @@ onMounted(async () => {
 }
 
 footer-navigation {
-	position: fixed;
+	position: absolute;
 	bottom: 0;
 	left: 0;
 	right: 0;

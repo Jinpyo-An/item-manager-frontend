@@ -2,7 +2,7 @@
 	<div class="main-title-section">
 		<div class="left-section">
 			<div class="date-info">
-				<i class="sun-icon"
+				<i class="calender-icon"
 					><font-awesome-icon :icon="['fas', 'calendar-days']"
 				/></i>
 				<span class="date">{{ currentDate }}</span>
@@ -57,7 +57,7 @@ onMounted(() => {
 	margin-bottom: 10px;
 }
 
-.sun-icon {
+.calender-icon {
 	font-size: 1.2rem;
 	margin-right: 8px;
 }

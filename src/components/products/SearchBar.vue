@@ -1,6 +1,6 @@
 <template>
 	<div class="search-container">
-		<label for="search" class="search-label">Search</label>
+		<label for="search" class="search-label">더 알아볼까요?</label>
 		<div class="search-input-wrapper">
 			<i class="fas fa-search search-icon">
 				<font-awesome-icon :icon="['fas', 'magnifying-glass']" />
@@ -41,7 +41,6 @@ function emitSearch() {
 	font-weight: bold;
 	font-size: 1.5rem;
 	margin-bottom: 10px;
-	font-family: Lexend, serif;
 }
 
 .search-input-wrapper {
