@@ -1,13 +1,13 @@
 <template>
 	<nav class="footer-navigation">
 		<!-- Home 버튼 -->
-		<button @click="goTo('home')" class="nav-item">
+		<button @click="goTo('')" class="nav-item">
 			<font-awesome-icon :icon="['fas', 'house']" class="nav-icon" />
 			<span>Home</span>
 		</button>
 
 		<!-- 내 제품 버튼 -->
-		<button @click="goTo('my-products')" class="nav-item">
+		<button @click="goTo('user-products')" class="nav-item">
 			<font-awesome-icon :icon="['fas', 'user']" class="nav-icon" />
 			<span>나의 전자제품</span>
 		</button>
