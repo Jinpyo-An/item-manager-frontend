@@ -48,12 +48,10 @@ function goTo(page) {
 	font-size: 10px;
 	line-height: 16px;
 	font-weight: 400;
-	opacity: 1;
 }
 
 .nav-icon {
 	width: 20px;
 	height: 20px;
-	fill: currentColor;
 }
 </style>

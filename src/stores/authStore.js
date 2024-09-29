@@ -12,6 +12,10 @@ export const useAuthStore = defineStore('auth', {
 			this.accessToken = accessToken;
 			this.refreshToken = refreshToken;
 			this.isAuthenticated = true;
+
+			// localStorage에 토큰 저장
+			localStorage.setItem('accessToken', accessToken);
+			localStorage.setItem('refreshToken', refreshToken);
 		},
 
 		// 로그아웃 시 토큰 삭제
@@ -19,11 +23,24 @@ export const useAuthStore = defineStore('auth', {
 			this.accessToken = null;
 			this.refreshToken = null;
 			this.isAuthenticated = false;
+
+			// localStorage에서 토큰 삭제
+			localStorage.removeItem('accessToken');
+			localStorage.removeItem('refreshToken');
 		},
 
-		// 토큰 불러오기
+		// localStorage에서 토큰을 불러와 상태에 저장
 		loadTokens() {
-			this.isAuthenticated = !!(this.accessToken && this.refreshToken);
+			const accessToken = localStorage.getItem('accessToken');
+			const refreshToken = localStorage.getItem('refreshToken');
+
+			if (accessToken && refreshToken) {
+				this.accessToken = accessToken;
+				this.refreshToken = refreshToken;
+				this.isAuthenticated = true;
+			} else {
+				this.clearTokens(); // 토큰이 없으면 상태를 초기화
+			}
 		},
 	},
 });

@@ -2,16 +2,16 @@
 	<div class="main-title-section">
 		<div class="left-section">
 			<div class="date-info">
-				<i class="calender-icon"
-					><font-awesome-icon :icon="['fas', 'calendar-days']"
-				/></i>
+				<i class="calender-icon">
+					<font-awesome-icon :icon="['fas', 'calendar-days']" />
+				</i>
 				<span class="date">{{ currentDate }}</span>
 			</div>
 			<h1>나의 전자 제품</h1>
 		</div>
 		<!-- 등록하기 버튼 -->
-		<button class="register-btn">
-			<font-awesome-icon :icon="['fas', 'pen']" class="icon" />등록하기
+		<button class="register-btn" @click="registerDevice">
+			<font-awesome-icon :icon="['fas', 'pen']" class="icon" /> 등록하기
 		</button>
 	</div>
 </template>
@@ -32,6 +32,12 @@ onMounted(() => {
 	const now = new Date();
 	currentDate.value = formatDate(now);
 });
+
+// 등록하기 버튼 클릭 시 호출
+function registerDevice() {
+	console.log('등록하기 버튼이 클릭되었습니다.');
+	// 등록 로직을 추가
+}
 </script>
 
 <style scoped>
@@ -39,7 +45,7 @@ onMounted(() => {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 5px 5px 5px;
+	padding: 5px 5px;
 	margin: 10px;
 }
 
@@ -72,7 +78,7 @@ h1 {
 	background-color: transparent;
 	border: 1px solid #5269cdff;
 	padding: 7px 10px;
-	margin-top: 35px;
+	margin-top: 25px;
 	font-size: 0.7rem;
 	cursor: pointer;
 	display: flex;
@@ -83,6 +89,11 @@ h1 {
 	color: #5269cdff;
 	opacity: 1;
 	border-radius: 16px;
+	transition: background-color 0.3s ease;
+}
+
+.register-btn:hover {
+	background-color: #f0f0f0;
 }
 
 .register-btn .icon {

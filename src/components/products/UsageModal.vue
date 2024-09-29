@@ -1,5 +1,4 @@
 <template>
-	<!-- 모달 바깥 영역 클릭 시 닫히도록 설정 -->
 	<div class="modal" @click.self="$emit('close')">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -16,12 +15,8 @@
 					class="device-icon"
 				/>
 			</div>
-			<p>
-				<strong>올바른 사용법</strong>
-			</p>
-			<p class="correct-usage">
-				{{ product.correct_usage }}
-			</p>
+			<p><strong>올바른 사용법</strong></p>
+			<p class="correct-usage">{{ product.correct_usage }}</p>
 		</div>
 	</div>
 </template>
@@ -38,8 +33,8 @@ const props = defineProps({
 	product: Object,
 });
 
-// 아이콘 경로 반환 함수
-function getIconForCategory(category) {
+// 제품 카테고리에 따른 아이콘 반환 함수
+const getIconForCategory = category => {
 	const iconMap = {
 		냉장고: refrigeratorIcon,
 		세탁기: washingMachineIcon,
@@ -47,10 +42,8 @@ function getIconForCategory(category) {
 		휴대폰: smartPhoneIcon,
 		다리미: ironIcon,
 	};
-
-	// 아이콘이 없을 경우 기본 아이콘 사용
 	return iconMap[category] || defaultDeviceIcon;
-}
+};
 </script>
 
 <style scoped>
@@ -70,10 +63,10 @@ function getIconForCategory(category) {
 	background-color: #fff;
 	padding: 20px;
 	border-radius: 16px;
-	margin-left: 10px;
-	margin-right: 10px;
 	width: 90%;
 	max-width: 400px;
+	margin-left: 15px;
+	margin-right: 15px;
 }
 
 .modal-header {
@@ -86,7 +79,6 @@ function getIconForCategory(category) {
 	width: 90px;
 	height: 90px;
 	margin-left: 70px;
-	margin-top: 10px;
 }
 
 .product-info {
@@ -94,14 +86,10 @@ function getIconForCategory(category) {
 	flex-direction: column;
 }
 
-p {
-	margin: 5px 0;
-}
-
 .correct-usage {
 	font-size: 14px;
 	line-height: 22px;
-	font-weight: 400;
-	color: #9095a1ff;
+	color: #9095a1;
+	margin-top: 10px;
 }
 </style>

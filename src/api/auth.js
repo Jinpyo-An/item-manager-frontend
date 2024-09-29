@@ -1,4 +1,4 @@
-import apiClient from './apiClient'; // apiClient를 불러옴
+import apiClient from './apiClient';
 
 // 로그인 요청 함수
 export async function login(email, password) {

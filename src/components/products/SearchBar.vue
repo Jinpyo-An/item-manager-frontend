@@ -2,9 +2,10 @@
 	<div class="search-container">
 		<label for="search" class="search-label">더 알아볼까요?</label>
 		<div class="search-input-wrapper">
-			<i class="fas fa-search search-icon">
-				<font-awesome-icon :icon="['fas', 'magnifying-glass']" />
-			</i>
+			<font-awesome-icon
+				:icon="['fas', 'magnifying-glass']"
+				class="search-icon"
+			/>
 			<input
 				type="text"
 				id="search"
@@ -20,14 +21,10 @@
 <script setup>
 import { ref } from 'vue';
 
-// 부모 컴포넌트로 검색어 전달
 const emit = defineEmits(['search']);
-const searchQuery = ref(''); // 검색어 입력 값
+const searchQuery = ref('');
 
-// 검색어가 변경될 때마다 부모 컴포넌트로 검색어 전달
-function emitSearch() {
-	emit('search', searchQuery.value);
-}
+const emitSearch = () => emit('search', searchQuery.value);
 </script>
 
 <style scoped>
