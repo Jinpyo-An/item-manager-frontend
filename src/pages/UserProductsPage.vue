@@ -17,17 +17,18 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, onBeforeUnmount } from 'vue';
 import { useAuthStore } from '@/stores/authStore';
 import { useRouter } from 'vue-router';
 import Header from '@/components/common/Header.vue';
-import ProductCard from '@/components/user-products/ProductCard.vue';
+import ProductCard from '@/components/user-products/UserProductList.vue';
 import FooterNavigation from '@/components/common/FooterNavigation.vue';
 import MainTitleSelection from '@/components/user-products/MainTitleSelection.vue';
 import { getUserProducts } from '@/api/userProducts';
 
 // 사용자 전자제품 정보 저장
 const userProducts = ref([]);
+const isLoading = ref(true);
 
 const authStore = useAuthStore();
 const router = useRouter();
@@ -37,6 +38,11 @@ function setViewportHeight() {
 	const vh = window.innerHeight * 0.01;
 	document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
+
+// 뷰포트 크기 조절 이벤트 제거
+onBeforeUnmount(() => {
+	window.removeEventListener('resize', setViewportHeight);
+});
 
 onMounted(async () => {
 	authStore.loadTokens();
@@ -52,7 +58,9 @@ onMounted(async () => {
 		userProducts.value = await getUserProducts(accessToken);
 	} catch (error) {
 		console.error('Error fetching user products:', error.message);
-		alert('사용자 전자제품 정보를 가져오는 중 오류가 발생했습니다.');
+		alert('전자제품 정보를 가져오는 중 오류가 발생했습니다.');
+	} finally {
+		isLoading.value = false;
 	}
 
 	setViewportHeight();
@@ -80,22 +88,25 @@ onMounted(async () => {
 	gap: 10px;
 	margin-left: 15px;
 	margin-right: 15px;
+	padding-bottom: 15px;
 }
 
 footer-navigation {
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	left: 0;
 	right: 0;
 	background-color: white;
 	z-index: 1000;
 	height: 60px;
-	display: flex;
-	justify-content: space-around;
 	align-items: center;
-	box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 	max-width: 390px;
 	width: 100%;
-	margin: 0;
+}
+
+@media (max-width: 768px) {
+	.scroll-container {
+		gap: 8px;
+	}
 }
 </style>

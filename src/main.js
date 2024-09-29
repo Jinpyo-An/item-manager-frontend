@@ -30,7 +30,6 @@ library.add(
 
 const app = createApp(App);
 
-// FontAwesome 컴포넌트 전역 등록
 app.component('font-awesome-icon', FontAwesomeIcon);
 app.use(createPinia());
 app.use(router);

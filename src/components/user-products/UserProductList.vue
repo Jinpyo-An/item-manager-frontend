@@ -20,34 +20,34 @@
 <script setup>
 import apiClient from '@/api/apiClient';
 
-defineProps({
+const props = defineProps({
 	device: Object,
 });
 
-// 전달 받은 이미지 경로에 서버 주소 연결 함수
+// 전달 받은 이미지 경로에 서버 주소 연결
 function getImageUrl(imagePath) {
 	return `${apiClient.defaults.baseURL}/${imagePath}`;
 }
 
-// year, month 동적 처리
+// 현재 시간 형식화 함수
 function formatDuration(duration) {
-	// year, month 동적 추출
-	const [years, months] = duration.match(/(\d+)년\s*(\d+)개월/).slice(1, 3);
+	if (!duration) return '정보 없음';
+	const match = duration.match(/(\d+)년\s*(\d+)개월/);
+	if (!match) return '정보 없음';
+
+	const [years, months] = match.slice(1, 3);
 
 	let formatted = '';
-
 	if (years > 0) formatted += `${years}년 `;
 	if (months > 0) formatted += `${months}개월`;
 
 	return formatted.trim();
 }
 
-// 사용자 전자제품의 배경 색상을 동적으로 설정
+// 배경 색상 설정 함수
 function getBackgroundColor(device) {
 	const colors = ['#7A8BD8FF', '#00E0A5FF', '#199878FF', '#125D95FF'];
-
-	// 권장 사용 기간에 따른 배경 색상 동적 설정
-	return colors[device.recommendUsageDuration % colors.length];
+	return colors[device.recommendUsageDuration % colors.length] || '#cccccc';
 }
 </script>
 
@@ -56,6 +56,7 @@ function getBackgroundColor(device) {
 	padding: 10px;
 	border-radius: 8px;
 	color: white;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .device-image {
@@ -69,15 +70,17 @@ function getBackgroundColor(device) {
 h3 {
 	margin-top: 4px;
 	margin-bottom: 3px;
-	font-size: 15px;
+	font-size: 1rem;
 }
 
 p {
 	margin: 4px 0;
-	font-size: 14px;
+	font-size: 0.875rem;
 }
 
 #availablePeriod {
 	margin: 4px 0;
+	font-weight: bold;
+	color: #f0e68c;
 }
 </style>

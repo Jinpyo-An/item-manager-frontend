@@ -18,6 +18,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import Header from '@/components/common/Header.vue';
 import FooterNavigation from '@/components/common/FooterNavigation.vue';
 import SearchBar from '@/components/products/SearchBar.vue';
@@ -25,7 +26,6 @@ import ProductList from '@/components/products/ProductList.vue';
 import UsageModal from '@/components/products/UsageModal.vue';
 import { getProducts } from '@/api/products';
 import { useAuthStore } from '@/stores/authStore';
-import { useRouter } from 'vue-router';
 
 const products = ref([]);
 const filteredProducts = ref([]);
@@ -34,13 +34,13 @@ const selectedProduct = ref(null);
 const authStore = useAuthStore();
 const router = useRouter();
 
+// 페이지가 로드될 때 실행
 onMounted(async () => {
 	authStore.loadTokens();
 
 	if (!authStore.isAuthenticated) {
 		alert('로그인이 필요합니다.');
 		await router.push('/signin');
-
 		return;
 	}
 
@@ -58,7 +58,7 @@ onMounted(async () => {
 	window.addEventListener('resize', setViewportHeight);
 });
 
-// 검색 핸들러
+// 검색어 입력 시 필터링
 function handleSearch(term) {
 	filteredProducts.value = products.value.filter(device =>
 		device.category.toLowerCase().includes(term.toLowerCase()),
@@ -75,7 +75,7 @@ function closeModal() {
 	selectedProduct.value = null;
 }
 
-// 뷰포트 높이 설정 함수
+// 뷰포트 높이 설정
 function setViewportHeight() {
 	const vh = window.innerHeight * 0.01;
 	document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -101,19 +101,15 @@ function setViewportHeight() {
 }
 
 footer-navigation {
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	left: 0;
 	right: 0;
 	background-color: white;
 	z-index: 1000;
 	height: 60px;
-	display: flex;
-	justify-content: space-around;
 	align-items: center;
-	box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 	max-width: 390px;
 	width: 100%;
-	margin: 0;
 }
 </style>

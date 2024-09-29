@@ -17,6 +17,9 @@
 </template>
 
 <script setup>
+import { defineProps } from 'vue';
+
+// 전자제품 Icon
 import refrigeratorIcon from '@/assets/product-icons/refrigerator.png';
 import washingMachineIcon from '@/assets/product-icons/washing-machine.png';
 import vacuumCleanerIcon from '@/assets/product-icons/cleaner.png';
@@ -28,8 +31,8 @@ const props = defineProps({
 	products: Array,
 });
 
-// SVG 아이콘 경로 반환 함수
-function getIconForCategory(category) {
+// 카테고리별 아이콘을 반환
+const getIconForCategory = category => {
 	const iconMap = {
 		냉장고: refrigeratorIcon,
 		세탁기: washingMachineIcon,
@@ -37,10 +40,9 @@ function getIconForCategory(category) {
 		휴대폰: smartPhoneIcon,
 		다리미: ironIcon,
 	};
-
-	// 제품 아이콘이 없을 경우 기본 아이콘 사용
+	// 기본 아이콘 설정
 	return iconMap[category] || defaultDeviceIcon;
-}
+};
 </script>
 
 <style scoped>
@@ -59,6 +61,11 @@ function getIconForCategory(category) {
 	cursor: pointer;
 	border: 1px solid #ccc;
 	border-radius: 8px;
+	transition: transform 0.2s;
+}
+
+.product-item:hover {
+	transform: scale(1.05);
 }
 
 .device-icon {
