@@ -118,8 +118,15 @@ onMounted(async () => {
 		userProducts.value = await getUserProducts(accessToken);
 		products.value = await getProducts(accessToken);
 	} catch (error) {
-		console.error('Error fetching data:', error.message);
-		alert('데이터를 가져오는 중 오류가 발생했습니다.');
+		if (error.response && error.response.status === 401) {
+			// 토큰 만료 시 처리
+			authStore.clearTokens();
+			alert('토큰이 만료되었습니다. 다시 로그인 해주세요.');
+			await router.push('/signin');
+		} else {
+			console.error('Error fetching data:', error.message);
+			alert('데이터를 가져오는 중 오류가 발생했습니다.');
+		}
 	}
 
 	// 날짜 설정

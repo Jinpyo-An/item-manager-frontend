@@ -2,19 +2,31 @@
 	<nav class="footer-navigation">
 		<!-- Home 버튼 -->
 		<button @click="goTo('')" class="nav-item">
-			<font-awesome-icon :icon="['fas', 'house']" class="nav-icon" />
+			<img
+				src="@/assets/footer-navigation-icons/home.png"
+				alt="Home"
+				class="nav-icon"
+			/>
 			<span>Home</span>
 		</button>
 
 		<!-- 내 제품 버튼 -->
 		<button @click="goTo('user-products')" class="nav-item">
-			<font-awesome-icon :icon="['fas', 'user']" class="nav-icon" />
+			<img
+				src="@/assets/footer-navigation-icons/user.png"
+				alt="나의 전자제품"
+				class="nav-icon"
+			/>
 			<span>나의 전자제품</span>
 		</button>
 
 		<!-- 사용법 버튼 -->
 		<button @click="goTo('products')" class="nav-item">
-			<font-awesome-icon :icon="['fas', 'share-nodes']" class="nav-icon" />
+			<img
+				src="@/assets/footer-navigation-icons/product.png"
+				alt="사용법"
+				class="nav-icon"
+			/>
 			<span>사용법</span>
 		</button>
 	</nav>

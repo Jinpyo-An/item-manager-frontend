@@ -1,8 +1,5 @@
 <template>
-	<div
-		class="device-card"
-		:style="{ backgroundColor: getBackgroundColor(device) }"
-	>
+	<div class="device-card" :style="{ backgroundColor: getRandomColor() }">
 		<img
 			:src="getImageUrl(device.imagePath)"
 			alt="device image"
@@ -20,6 +17,7 @@
 <script setup>
 import apiClient from '@/api/apiClient';
 
+// 전달받은 `device` prop 정의
 const props = defineProps({
 	device: Object,
 });
@@ -44,10 +42,10 @@ function formatDuration(duration) {
 	return formatted.trim();
 }
 
-// 배경 색상 설정 함수
-function getBackgroundColor(device) {
-	const colors = ['#7A8BD8FF', '#00E0A5FF', '#199878FF', '#125D95FF'];
-	return colors[device.recommendUsageDuration % colors.length] || '#cccccc';
+// 랜덤으로 배경 색상을 반환하는 함수
+function getRandomColor() {
+	const colors = ['#7A8BD8FF', '#00E0A5FF', '#125D95FF', '#199878FF'];
+	return colors[Math.floor(Math.random() * colors.length)];
 }
 </script>
 

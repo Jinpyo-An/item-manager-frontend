@@ -28,6 +28,10 @@ import vacuumCleanerIcon from '@/assets/product-icons/cleaner.png';
 import smartPhoneIcon from '@/assets/product-icons/smartphone.png';
 import ironIcon from '@/assets/product-icons/iron.png';
 import defaultDeviceIcon from '@/assets/product-icons/default.png';
+import televisionIcon from '@/assets/product-icons/television.png';
+import dishwasherIcon from '@/assets/product-icons/dishwasher.png';
+import computerIcon from '@/assets/product-icons/computer.png';
+import chargerIcon from '@/assets/product-icons/charger.png';
 
 const props = defineProps({
 	product: Object,
@@ -41,6 +45,10 @@ const getIconForCategory = category => {
 		청소기: vacuumCleanerIcon,
 		휴대폰: smartPhoneIcon,
 		다리미: ironIcon,
+		TV: televisionIcon,
+		식기세척기: dishwasherIcon,
+		컴퓨터: computerIcon,
+		충전기: chargerIcon,
 	};
 	return iconMap[category] || defaultDeviceIcon;
 };
