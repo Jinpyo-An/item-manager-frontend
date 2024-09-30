@@ -57,10 +57,15 @@ onMounted(async () => {
 		const accessToken = authStore.accessToken;
 		userProducts.value = await getUserProducts(accessToken);
 	} catch (error) {
-		console.error('Error fetching user products:', error.message);
-		alert('전자제품 정보를 가져오는 중 오류가 발생했습니다.');
-	} finally {
-		isLoading.value = false;
+		if (error.response && error.response.status === 401) {
+			// 토큰 만료 시 처리
+			authStore.clearTokens();
+			alert('토큰이 만료되었습니다. 다시 로그인 해주세요.');
+			await router.push('/signin');
+		} else {
+			console.error('Error fetching data:', error.message);
+			alert('사용자 전자제품 정보를 가져오는 중 오류가 발생했습니다.');
+		}
 	}
 
 	setViewportHeight();
