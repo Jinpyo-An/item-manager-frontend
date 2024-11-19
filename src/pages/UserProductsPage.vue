@@ -1,7 +1,7 @@
 <template>
 	<div class="main-page">
 		<Header />
-		<MainTitleSelection />
+		<MainTitleSelection @register="openRegisterModal" />
 
 		<!-- 전자제품 목록 -->
 		<div class="scroll-container">
@@ -12,37 +12,50 @@
 			/>
 		</div>
 
+		<RegisterProductModal
+			:isOpen="isRegisterModalOpen"
+			@close="closeRegisterModal"
+			@registered="fetchUserProducts"
+		/>
+
 		<FooterNavigation />
 	</div>
 </template>
 
 <script setup>
-import { onMounted, ref, onBeforeUnmount } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useAuthStore } from '@/stores/authStore';
 import { useRouter } from 'vue-router';
 import Header from '@/components/common/Header.vue';
 import ProductCard from '@/components/user-products/UserProductList.vue';
 import FooterNavigation from '@/components/common/FooterNavigation.vue';
 import MainTitleSelection from '@/components/user-products/MainTitleSelection.vue';
+import RegisterProductModal from '@/components/user-products/RegisterModal.vue';
 import { getUserProducts } from '@/api/userProducts';
 
-// 사용자 전자제품 정보 저장
 const userProducts = ref([]);
-const isLoading = ref(true);
+const isRegisterModalOpen = ref(false);
 
 const authStore = useAuthStore();
 const router = useRouter();
 
-// 뷰포트 높이 설정 함수
-function setViewportHeight() {
-	const vh = window.innerHeight * 0.01;
-	document.documentElement.style.setProperty('--vh', `${vh}px`);
+function openRegisterModal() {
+	isRegisterModalOpen.value = true;
 }
 
-// 뷰포트 크기 조절 이벤트 제거
-onBeforeUnmount(() => {
-	window.removeEventListener('resize', setViewportHeight);
-});
+function closeRegisterModal() {
+	isRegisterModalOpen.value = false;
+}
+
+async function fetchUserProducts() {
+	try {
+		const accessToken = authStore.accessToken;
+		userProducts.value = await getUserProducts(accessToken);
+	} catch (error) {
+		console.error('Error fetching user products:', error.message);
+		alert('사용자 전자제품 정보를 가져오는 중 오류가 발생했습니다.');
+	}
+}
 
 onMounted(async () => {
 	authStore.loadTokens();
@@ -53,23 +66,7 @@ onMounted(async () => {
 		return;
 	}
 
-	try {
-		const accessToken = authStore.accessToken;
-		userProducts.value = await getUserProducts(accessToken);
-	} catch (error) {
-		if (error.response && error.response.status === 401) {
-			// 토큰 만료 시 처리
-			authStore.clearTokens();
-			alert('토큰이 만료되었습니다. 다시 로그인 해주세요.');
-			await router.push('/signin');
-		} else {
-			console.error('Error fetching data:', error.message);
-			alert('사용자 전자제품 정보를 가져오는 중 오류가 발생했습니다.');
-		}
-	}
-
-	setViewportHeight();
-	window.addEventListener('resize', setViewportHeight);
+	await fetchUserProducts();
 });
 </script>
 

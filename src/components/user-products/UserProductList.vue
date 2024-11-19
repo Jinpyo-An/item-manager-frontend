@@ -18,7 +18,7 @@
 import apiClient from '@/api/apiClient';
 
 // 전달받은 `device` prop 정의
-const props = defineProps({
+defineProps({
 	device: Object,
 });
 
