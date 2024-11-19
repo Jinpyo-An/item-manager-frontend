@@ -18,10 +18,9 @@
 import apiClient from '@/api/apiClient';
 
 // 전달받은 `device` prop 정의
-const props = defineProps({
+defineProps({
 	device: Object,
 });
-
 // 전달 받은 이미지 경로에 서버 주소 연결
 function getImageUrl(imagePath) {
 	return `${apiClient.defaults.baseURL}/${imagePath}`;

@@ -10,7 +10,7 @@
 			<h1>나의 전자 제품</h1>
 		</div>
 		<!-- 등록하기 버튼 -->
-		<button class="register-btn" @click="registerDevice">
+		<button class="register-btn" @click="$emit('register')">
 			<font-awesome-icon :icon="['fas', 'pen']" class="icon" /> 등록하기
 		</button>
 	</div>
@@ -32,12 +32,6 @@ onMounted(() => {
 	const now = new Date();
 	currentDate.value = formatDate(now);
 });
-
-// 등록하기 버튼 클릭 시 호출
-function registerDevice() {
-	console.log('등록하기 버튼이 클릭되었습니다.');
-	// 등록 로직을 추가
-}
 </script>
 
 <style scoped>
